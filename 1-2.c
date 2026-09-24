@@ -14,6 +14,16 @@ double GetValue();
 */
 void CheckValue(const double value);
 
+
+/*
+* @brief рассчитывает площадь треугольника по данным сторонам
+* @param a - первая сторона
+* @param b - вторая сторона
+* @param c - угол между сторонами
+* @return площадь треугольника
+*/
+double cInDeg(const double c);
+
 /*
 * @brief рассчитывает площадь треугольника по данным сторонам
 * @param a - первая сторона
@@ -56,10 +66,11 @@ int main()
 	CheckValue(b);
 
 	printf("Enter angle c:\n ");
-	double c_deg = GetValue();
-	CheckValue(c_deg);
+	double c = GetValue();
+	CheckValue(c);
 
-	double c = c_deg * M_PI / 180; 
+	c = cInDeg(c);
+	
 	double third_side = GetThirdSideOfTriangle(a, b, c);
 
 	printf("Area of the triangle: %.2lf\n", GetAreaOfTriangle(a, b, c));
@@ -86,6 +97,11 @@ void CheckValue(const double value)
 		printf("Error: value need be positive or not be 0\n");
 		exit(1);
 	}
+}
+
+double cInDeg(const double c)
+{
+	return c * M_PI / 180; 
 }
 
 double GetAreaOfTriangle(const double a, const double b, const double c)
