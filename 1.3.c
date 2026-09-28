@@ -24,7 +24,7 @@ double GetValue();
  * 
  * @param value - проверяемое занчение
  */
-void CheckValue(const double value);
+double CheckValue();
 
 /**
  * @brief точка входа в программу
@@ -35,36 +35,36 @@ int main()
 {
     printf("Введите длину в метрах: ");
     double l = GetValue();
-    CheckValue(l);
-
+    
     printf("Введите площадь сечения в мм^2: ");
     double s = GetValue();
-    CheckValue(s);
 
     printf("Сопротивление равно: %.3f Ом ", GetWireResistance(s, l));
 
     return 0;
 }
 
-double GetValue()
-{
+double CheckValue()
+{   
     double value = 0;
-
-    if(!scanf("%lf", &value))
-    {
+    if(scanf("%lf", &value) != 1){
         printf("Error: incorrect type\n");
         exit(1);
     }
     return value;
 }
 
-void CheckValue(double value)
+double GetValue()
 {
+    double value = CheckValue();
     if(value <= 0){
         printf("Error: incorrect type (must be positive number)");
         exit(1);
     }
+    return value;
 }
+
+
 
 double GetWireResistance(const double s, const double l)
 {
