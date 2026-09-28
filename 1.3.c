@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdlib.h>
 #define RHO_ALUMINUM 0.028
+
 /**
  * @brief считает сопротивление на основе полученных данных 
  * 
@@ -19,6 +20,13 @@ double GetWireResistance(const double s, const double l);
 double GetValue();
 
 /**
+ * @brief проверяет корректность ввода 
+ * 
+ * @param value - проверяемое занчение
+ */
+void CheckValue(const double value);
+
+/**
  * @brief точка входа в программу
  * 
  * @return возвращает 0, если программа выполнена корректно 
@@ -27,9 +35,11 @@ int main()
 {
     printf("Введите длину в метрах: ");
     double l = GetValue();
+    CheckValue(l);
 
     printf("Введите площадь сечения в мм^2: ");
     double s = GetValue();
+    CheckValue(s);
 
     printf("Сопротивление равно: %.3f Ом ", GetWireResistance(s, l));
 
@@ -39,18 +49,25 @@ int main()
 double GetValue()
 {
     double value = 0;
-    if (scanf("%lf", &value) != 1 || value <= 0){
-        printf("Error: incorrect type (must be positive number)");
+
+    if(!scanf("%lf", &value))
+    {
+        printf("Error: incorrect type\n");
         exit(1);
     }
     return value;
 }
 
+void CheckValue(double value)
+{
+    if(value <= 0){
+        printf("Error: incorrect type (must be positive number)");
+        exit(1);
+    }
+}
 
 double GetWireResistance(const double s, const double l)
 {
 
     return RHO_ALUMINUM * (l / s);
 }
-
-
