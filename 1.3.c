@@ -13,18 +13,18 @@
 double GetWireResistance(const double s, const double l);
 
 /**
- * @brief считывает данное значение и проверяет корректность 
+ * @brief Считывает число из консоли и проверяет совпадение типа
  * 
  * @return считанное значение 
  */
-double GetValue();
+double ReadDouble();
 
 /**
  * @brief проверяет корректность ввода 
  * 
- * @param value - проверяемое занчение
+ * @param корректное полученное занчение
  */
-double CheckValue();
+double GetValidValue();
 
 /**
  * @brief точка входа в программу
@@ -34,17 +34,17 @@ double CheckValue();
 int main()
 {
     printf("Введите длину в метрах: ");
-    double l = GetValue();
+    double l = GetValidValue();
     
     printf("Введите площадь сечения в мм^2: ");
-    double s = GetValue();
+    double s = GetValidValue();
 
     printf("Сопротивление равно: %.3f Ом ", GetWireResistance(s, l));
 
     return 0;
 }
 
-double CheckValue()
+double ReadDouble()
 {   
     double value = 0;
     if(scanf("%lf", &value) != 1){
@@ -54,11 +54,11 @@ double CheckValue()
     return value;
 }
 
-double GetValue()
+double GetValidValue()
 {
-    double value = CheckValue();
+    double value = ReadDouble();
     if(value <= 0){
-        printf("Error: incorrect type (must be positive number)");
+        printf("Error: incorrect type (must be positive number)\n");
         exit(1);
     }
     return value;
