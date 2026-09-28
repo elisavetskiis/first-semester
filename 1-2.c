@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <math.h>
 
-/*
-* @brief считывает введённое значение и проверяет его на корректность
-* @return считанное значение
-*/
-double GetValue();
+/**
+ * @brief проверяет корректность ввода 
+ * @param корректное полученное занчение
+ */
+double GetValidValue();
 
-/*
-* @brief проверяет, что значение больше 0
-* @param value - проверяемое значение
-*/
-void CheckValue(const double value);
+/**
+ * @brief Считывает число из консоли и проверяет совпадение типа
+ * @return считанное значение 
+ */
+double ReadDouble();
 
 
 /*
@@ -57,18 +57,15 @@ double GetRadiusOfCircumscribedFigure(const double third_side, const double c);
 */
 int main()
 {
-	printf("Enter side a:\n ");
-	double a = GetValue();
-	CheckValue(a);
-
-	printf("Enter side b:\n ");
-	double b = GetValue();
-	CheckValue(b);
-
-	printf("Enter angle c:\n ");
-	double c = GetValue();
-	CheckValue(c);
-
+	printf("Enter side a: ");
+	double a = GetValidValue();
+	
+	printf("Enter side b: ");
+	double b = GetValidValue();
+	
+	printf("Enter angle c: ");
+	double c = GetValidValue();
+	
 	c = cInDeg(c);
 	
 	double third_side = GetThirdSideOfTriangle(a, b, c);
@@ -79,10 +76,10 @@ int main()
 	return 0;
 }
 
-double GetValue()
+double ReadDouble()
 {
 	double value = 0;
-	if (!scanf("%lf", &value))
+	if (scanf("%lf", &value) != 1)
 	{
 		printf("Error: incorrect type\n");
 		exit(1);
@@ -90,13 +87,15 @@ double GetValue()
 	return value;
 }
 
-void CheckValue(const double value)
+double GetValidValue()
 {
+	double value = ReadDouble();
 	if (value <= 0)
 	{
 		printf("Error: value need be positive or not be 0\n");
 		exit(1);
 	}
+	return value;
 }
 
 double cInDeg(const double c)
