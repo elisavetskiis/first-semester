@@ -4,23 +4,23 @@
 
 /**
  * @brief проверяет корректность ввода 
+ * 
  * @param корректное полученное занчение
  */
 double GetValidValue();
 
 /**
  * @brief Считывает число из консоли и проверяет совпадение типа
+ * 
  * @return считанное значение 
  */
 double ReadDouble();
 
 
 /*
-* @brief рассчитывает площадь треугольника по данным сторонам
-* @param a - первая сторона
-* @param b - вторая сторона
+* @brief переводит угол с из радиан в градусы
 * @param c - угол между сторонами
-* @return площадь треугольника
+* @return угол с в градусах
 */
 double cInDeg(const double c);
 
@@ -44,8 +44,7 @@ double GetThirdSideOfTriangle(const double a, const double b, const double c);
 
 /*
 * @brief рассчитывает радиус описанной окружности
-* @param a - первая сторона
-* @param b - вторая сторона
+* @param third_side - третья сторона сторона
 * @param c - угол между сторонами
 * @return значение радиуса описанной окружности 
 */
