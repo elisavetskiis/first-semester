@@ -1,28 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
+
 
 /**
  * @brief проверяет корректность ввода 
- * 
- * @param корректное полученное занчение
+ * @return корректное полученное занчение
  */
 double GetValidValue();
 
 /**
  * @brief Считывает число из консоли и проверяет совпадение типа
- * 
  * @return считанное значение 
  */
 double ReadDouble();
 
 
 /*
-* @brief переводит угол с из радиан в градусы
+* @brief переводит угол с из градусов в радианы
 * @param c - угол между сторонами
-* @return угол с в градусах
+* @return угол с в радианах
 */
-double cInDeg(const double c);
+double cInRad(const double c);
 
 /*
 * @brief рассчитывает площадь треугольника по данным сторонам
@@ -65,12 +65,12 @@ int main()
 	printf("Enter angle c: ");
 	double c = GetValidValue();
 	
-	c = cInDeg(c);
+	c = cInRad(c);
 	
 	double third_side = GetThirdSideOfTriangle(a, b, c);
 
 	printf("Area of the triangle: %.2lf\n", GetAreaOfTriangle(a, b, c));
-	printf("Value of the third side of the triangle: %.2lf\n", GetThirdSideOfTriangle(a, b, c));
+	printf("Value of the third side of the triangle: %.2lf\n", third_side);
 	printf("Radius of the circumscribed figure: %.2lf\n", GetRadiusOfCircumscribedFigure(third_side, c));
 	return 0;
 }
@@ -97,7 +97,7 @@ double GetValidValue()
 	return value;
 }
 
-double cInDeg(const double c)
+double cInRad(const double c)
 {
 	return c * M_PI / 180; 
 }
