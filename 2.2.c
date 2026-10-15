@@ -13,7 +13,7 @@ double ReadValue();
  * 
  * @param корректное полученное занчение
  */
-double CheckValue();
+double GetValue();
 
 /**
  * @brief считает функцию 
@@ -22,7 +22,7 @@ double CheckValue();
  * @param x - вводимое пользователем число
  * @return результат вычислений функции 
  */
-double CountingFunction(const double a, double x);
+double CountingFunction(const double a, const double x);
 
 /**
  * @brief точка входа в программу
@@ -34,7 +34,7 @@ int main()
     const double a = 1.5;
     
     printf("введите х: ");
-    double x = CheckValue();
+    double x = GetValue();
     
     printf("y = %.3f", CountingFunction(a, x));
 
@@ -45,23 +45,25 @@ int main()
 
 double ReadValue(){
     double x = 0;
-    if(scanf("%lf", &x) == 1){
-        return x;
-    }else{
-        printf("Ошибка: неверный ввод");
+    if(scanf("%lf", &x) != 1){
         exit(1);
+        printf("Ошибка: неверный ввод");
     }
+
+    return x;
 }
 
-double CheckValue(){
+double GetValue(){
     double value = ReadValue();
     if(value <= 0){
         printf("ошибка: число должно быть положительно");
         exit(1);
-    }else return value;
+    }
+    
+    return value;
 }
 
-double CountingFunction(const double a, double x){
+double CountingFunction(const double a, const double x){
 
     if(a*x < 1){
         return a*x - log(a*x);
