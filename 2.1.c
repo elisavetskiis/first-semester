@@ -23,7 +23,7 @@ double GetN();
  * @param n - коэффициент увеличения
  * @return посчитанные числа
  */
-double GetResult(double a, double n);
+double GetResult(const double a, const double n);
 
 /**
  * @brief точка входа в программу
@@ -56,7 +56,7 @@ double GetValue()
 }
 
 
-double GetResult(double a, double n)
+double GetResult(const double a, const double n)
 {
     double result = 0;
 
