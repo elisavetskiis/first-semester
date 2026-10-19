@@ -18,6 +18,8 @@ double GetValue();
  */
 void Result(const double start, const double end, const double step);
 
+void Limit();
+
 /**
  * @brief точка входа в программу
  * 
@@ -47,14 +49,19 @@ double GetValue()
     return value;
 }
 
-void Result(const double start, const double end, const double step)
+void Limit(const double start, const double end, const double step)
 {
     if (step <= 0 || start > end){
         printf("Ошибка: неверный шаг или интервал\n");
-        return;
+        exit(1);
     }
+}
 
-    for(double x = start; x<= end; x += step){
+void Result(const double start, const double end, const double step)
+{
+    Limit(start, end, step);
+
+    for(double x = start; x < end; x += step){
         if(x > 1){
             printf("x = %.2f, функция не определена\n", x);
 
