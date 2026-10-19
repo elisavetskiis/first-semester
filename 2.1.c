@@ -9,12 +9,6 @@
  */
 double GetValue();
 
-/**
- * @brief считывает число
- * 
- * @return считанное число 
- */
-double GetN();
 
 /**
  * @brief вычисляет и выводит значения A, увеличенные в N, 2N и 3N раз
@@ -60,7 +54,7 @@ double GetResult(const double a, const double n)
 {
     double result = 0;
 
-    for(int i = 1; i<=3; i++){
+    for(int i = 1; i<=n; i++){
         result = a * n * i;
         printf("A увеличено в %dN раз: %g\n", i, result);
     }
