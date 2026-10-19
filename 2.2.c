@@ -9,11 +9,11 @@
 double ReadValue();
 
 /**
- * @brief считывает и проверяет корректность ввода 
+ * @brief проверяет корректность ввода 
  * 
  * @param корректное полученное занчение
  */
-double GetValue();
+double GetPositiveValue();
 
 /**
  * @brief считает функцию 
@@ -34,7 +34,7 @@ int main()
     const double a = 1.5;
     
     printf("введите х: ");
-    double x = GetValue();
+    double x = GetPositiveValue();
     
     printf("y = %.3f", CountingFunction(a, x));
 
@@ -53,7 +53,7 @@ double ReadValue(){
     return x;
 }
 
-double GetValue(){
+double GetPositiveValue(){
     double value = ReadValue();
     if(value <= 0){
         printf("ошибка: число должно быть положительно");
