@@ -35,7 +35,7 @@ int main(){
     double a = GetValue();
 
     printf("во сколько раз увеличить?: ");
-    double n = GetN();
+    double n = GetValue();
 
     GetResult(a, n);
 
@@ -47,24 +47,14 @@ int main(){
 double GetValue()
 {
     double value = 0;
-    if(scanf("%lf", &value) == 1){
-        return value;
-    } else{
+    if(scanf("%lf", &value) != 1){
         printf("ошибка, неверный ввод");
-        exit(1);
+        exit(1);       
+    } else{
+        return value;
     }
 }
 
-double GetN()
-{
-    double N = 0;
-    if(scanf("%lf", &N) == 1){
-        return N;
-    } else{
-        printf("ошибка, неверный ввод");
-        exit(1);
-    }
-}
 
 double GetResult(double a, double n)
 {
