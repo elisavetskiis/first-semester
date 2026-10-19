@@ -18,6 +18,11 @@ double GetValue();
  */
 void Result(const double start, const double end, const double step);
 
+/**
+ * @brief проверяет корректность шага и интервала
+ * 
+ * 
+ */
 void Limit();
 
 /**
