@@ -1,63 +1,82 @@
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * @brief считывает число
- * 
- * @return считанное число 
+ * @brief Считывает число 
+ *
+ * @return Считанное число 
  */
 double GetValue();
 
-
 /**
- * @brief вычисляет и выводит значения A, увеличенные в N, 2N и 3N раз
+ * @brief Вычисляет значение A, увеличенное в N, 2N или 3N раз
  *
- * @param a - исходное значение числа
- * @param n - коэффициент увеличения
- * @return посчитанные числа
+ * @param a Исходное значение числа
+ * @param n Коэффициент увеличения
+ * @param choice Выбранный вариант увеличения (1, 2 или 3)
+ * @return Результат вычисления
  */
-double GetResult(const double a, const double n);
+double GetResult(const double a, const double n, const int choice);
 
 /**
- * @brief точка входа в программу
- * 
- * @return возвращает 0, если программа выполнена корректно 
+ * @brief Считывает и проверяет выбор пользователя
+ *
+ * @return Выбранный вариант увеличения (1, 2 или 3)
  */
-int main(){
-    printf("введите значение A: ");
+int GetChoice();
+
+/**
+ * @brief Точка входа в программу
+ *
+ * @return 0, если программа выполнена корректно
+ */
+int main()
+{
+    printf("Введите значение A: ");
     double a = GetValue();
 
-    printf("во сколько раз увеличить?: ");
+    printf("Введите значение N: ");
     double n = GetValue();
 
-    GetResult(a, n);
+    printf("Выберите вариант увеличения:\n");
+    printf("1 - в N раз\n");
+    printf("2 - в 2N раз\n");
+    printf("3 - в 3N раз\n");
+
+    int choice = GetChoice();
+
+    double result = GetResult(a, n, choice);
+
+    printf("Результат: %g\n", result);
 
     return 0;
 }
 
-
-
 double GetValue()
 {
     double value = 0;
-    if(scanf("%lf", &value) != 1){
-        printf("ошибка, неверный ввод");
-        exit(1);       
-    } else{
-        return value;
+
+    if (scanf("%lf", &value) != 1) {
+        printf("Ошибка: неверный ввод\n");
+        exit(1);
     }
+
+    return value;
 }
 
-
-double GetResult(const double a, const double n)
+int GetChoice()
 {
-    double result = 0;
+    int choice = 0;
 
-    for(int i = 1; i<=n; i++){
-        result = a * n * i;
-        printf("A увеличено в %dN раз: %g\n", i, result);
+    if (scanf("%d", &choice) != 1 || choice < 1 || choice > 3) {
+        printf("Ошибка: неверный выбор\n");
+        exit(1);
     }
-    return result;
+
+    return choice;
 }
 
+double GetResult(const double a, const double n, const int choice)
+{
+    return a * n * choice;
+}
