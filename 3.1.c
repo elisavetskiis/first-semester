@@ -23,7 +23,7 @@ void Result(const double start, const double end, const double step);
  * 
  * 
  */
-void Limit();
+void Limit(const double start, const double end, const double step);
 
 /**
  * @brief точка входа в программу
@@ -39,6 +39,7 @@ int main()
     printf("введите шаг интервала: ");
     double step = GetValue();   
 
+    Limit(start, end, step);
     Result(start, end, step);
 
     return 0;
@@ -64,15 +65,24 @@ void Limit(const double start, const double end, const double step)
 
 void Result(const double start, const double end, const double step)
 {
-    Limit(start, end, step);
-
-    for(double x = start; x < end; x += step){
-        if(x > 1){
+    for (double x = start; ; ) {
+        if (x > 1) {
             printf("x = %.2f, функция не определена\n", x);
-
-        }else{
-            double y = sqrt(1-x) - cos(sqrt(1-x));
+        } else {
+            double y = sqrt(1 - x) - cos(sqrt(1 - x));
             printf("x = %.2f y = %.2f\n", x, y);
         }
-    }
+
+        if (x >= end) {
+            break;
+        }
+
+        double next = x + step;
+
+        if (next <= x) {
+            printf("Ошибка: слишком маленький шаг\n");
+            return;
+        }
+        x = (next >= end) ? end: next;
+    }   
 }
