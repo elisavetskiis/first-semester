@@ -1,10 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+enum IncreaseOption {
+    N_TIMES = 1,
+    TWO_N_TIMES = 2,
+    THREE_N_TIMES = 3
+};
+
 /**
- * @brief Считывает число 
+ * @brief Считывает число с клавиатуры
  *
- * @return Считанное число 
+ * @return Считанное число типа double
  */
 double GetValue();
 
@@ -38,10 +44,10 @@ int main()
     printf("Введите значение N: ");
     double n = GetValue();
 
-    printf("Выберите вариант увеличения:\n");
-    printf("1 - в N раз\n");
-    printf("2 - в 2N раз\n");
-    printf("3 - в 3N раз\n");
+printf("Выберите вариант увеличения:\n");
+    printf("%d - в N раз\n", N_TIMES);
+    printf("%d - в 2N раз\n", TWO_N_TIMES);
+    printf("%d - в 3N раз\n", THREE_N_TIMES);
 
     int choice = GetChoice();
 
@@ -78,5 +84,20 @@ int GetChoice()
 
 double GetResult(const double a, const double n, const int choice)
 {
-    return a * n * choice;
+    switch (choice)
+    {
+    case N_TIMES:
+        return a * n;
+        
+    case TWO_N_TIMES:
+        return a * n * 2;
+    
+    case THREE_N_TIMES:
+        return a * n * 3;
+
+    default:
+        printf("Ошибка\n");
+        exit(1);
+
+    }
 }
