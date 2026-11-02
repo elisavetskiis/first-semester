@@ -65,24 +65,12 @@ void Limit(const double start, const double end, const double step)
 
 void Result(const double start, const double end, const double step)
 {
-    for (double x = start; ; ) {
+    for (double x = start; x < end + step; x += step ) {
         if (x > 1) {
             printf("x = %.2f, функция не определена\n", x);
         } else {
             double y = sqrt(1 - x) - cos(sqrt(1 - x));
             printf("x = %.2f y = %.2f\n", x, y);
         }
-
-        if (x >= end) {
-            break;
-        }
-
-        double next = x + step;
-
-        if (next <= x) {
-            printf("Ошибка: слишком маленький шаг\n");
-            return;
-        }
-        x = (next >= end) ? end: next;
     }   
 }
