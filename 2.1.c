@@ -74,7 +74,7 @@ int GetChoice()
 {
     int choice = 0;
 
-    if (scanf("%d", &choice) != 1 || choice < 1 || choice > 3) {
+    if (scanf("%d", &choice) != 1) {
         printf("Ошибка: неверный выбор\n");
         exit(1);
     }
