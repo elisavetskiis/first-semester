@@ -80,7 +80,7 @@ double GetFunction(double x){
 }
 
 double GetSum(double x){
-    const double EPS = 0.0001;
+    double EPS = 0.0001;
     double a = (x - 1)/(x + 1);
     double q = a;
     double sum = 0;
