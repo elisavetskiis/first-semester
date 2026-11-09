@@ -28,15 +28,27 @@ double GetSum(double x);
 double GetCoef(const int i);
 
 /**
+ * @brief считывает и проверяет введенное исло 
+ * 
+ * @return считанное число
+ */
+double GetValue();
+
+/**
  * @brief Точка входа в программу
  *
  * @return 0, если программа выполнена корректно
  */
 int main()
 {
-    double start = 0.2;
-    double end = 1.0;
-    double step = 0.1;
+    printf("Введите начало интервала: ");
+    double start = GetValue();
+
+    printf("Введите конец интервала: ");
+    double end = GetValue();
+
+    printf("Введите шаг интервала: ");
+    double step = GetValue();
 
     printf("x\t\tf(x)\t\tS(x)\n");
 
@@ -50,19 +62,22 @@ int main()
     return 0;
 }
 
-double GetValue(){
+double GetValue()
+{
     double value = 0;
-    if(scanf("%lf", &value) != 1){
-        printf("Ошибка: неверный ввод");
+
+    if (scanf("%lf", &value) != 1 || !isfinite(value)) {
+        printf("Ошибка: неверный ввод\n");
         exit(1);
     }
+
     return value;
 }
 
 int GetInt(){
     int value = 0;
     if(scanf("%d", &value) != 1){
-        printf("Ошибка: неверный ввод");
+        printf("неверный ввод");
         exit(1);
     }
     return value;
