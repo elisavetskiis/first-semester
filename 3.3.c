@@ -17,7 +17,7 @@ double GetFunction(double x);
  * @param x - аргумент ряда
  * @return Приближенное значение суммы ряда
  */
-double GetSum(double x);
+double GetSum(double x, const double eps);
 
 /**
  * @brief Вычисляет коэффициент для следующего члена ряда
@@ -50,13 +50,16 @@ int main()
     printf("Введите шаг интервала: ");
     double step = GetValue();
 
+    printf("Введите точность: ");
+    double eps = GetValue();
+
     printf("x\t\tf(x)\t\tS(x)\n");
 
     for(int i = 0; start + i * step <= end; i++){
         double x = start + i * step;
 
         printf("%.2f\t\t%.4f\t\t%.4f\n",
-               x, GetFunction(x), GetSum(x));
+               x, GetFunction(x), GetSum(x, eps));
     }
 
     return 0;
@@ -74,18 +77,26 @@ double GetValue()
     return value;
 }
 
+int GetInt(){
+    int value = 0;
+    if(scanf("%d", &value) != 1){
+        printf("неверный ввод");
+        exit(1);
+    }
+    return value;
+}
 
 double GetFunction(double x){
     return 0.5 * log(x);
 }
 
-double GetSum(double x){
-    double EPS = 0.0001;
+double GetSum(double x, const double eps){
+    
     double a = (x - 1)/(x + 1);
     double q = a;
     double sum = 0;
 
-    for(int i = 0; fabs(a)/(1 - q*q) >= EPS; i++){
+    for(int i = 0; fabs(a)/(1 - q*q) >= eps; i++){
         sum += a;
         a *= GetCoef(i) * q*q;
     }
