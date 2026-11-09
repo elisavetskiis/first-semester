@@ -74,14 +74,6 @@ double GetValue()
     return value;
 }
 
-int GetInt(){
-    int value = 0;
-    if(scanf("%d", &value) != 1){
-        printf("неверный ввод");
-        exit(1);
-    }
-    return value;
-}
 
 double GetFunction(double x){
     return 0.5 * log(x);
