@@ -30,6 +30,18 @@ void ResultA(const int n);
  */
 void ResultB(const double e);
 
+/**
+ * @brief вычисляет при каком натуральном числе N произведение предшествующего числа и числа, следующего за N, равно 2208
+ */
+void ResultC();
+
+/**
+ * @brief 
+ * 
+ * @param k 
+ * @return double 
+ */
+double GetCOef(const int k);
 
 /**
  * @brief точка взода в программу
@@ -49,6 +61,8 @@ int main()
     double e = GetDouble();
 
     ResultB(e);
+
+    ResultC();
     return 0;
 }
 
@@ -80,11 +94,14 @@ void ResultA(const int n)
 
    for(int k = 1; k <= n; k++){
     sum += term;
-
-    term = -term * (k+1)/(k*(k+2.0));
+    term *= GetCOef(k);
    }
    printf("Сумма = %g\n", sum);
    
+}
+
+double GetCOef(const int k){
+    return -(k+1.0)/(k*(k+2.0));
 }
 
 
@@ -99,4 +116,14 @@ void ResultB(const double e){
         k++;
     }
     printf("Сумма = %g\n", sum);
+}
+
+
+void ResultC(){
+    const int target = 2208;
+    for(int n = 1; n <= target; n++){
+        if((n - 1) * (n + 1) == target){
+            printf("Доп задание: N = %d\n", n);
+        }
+    }
 }
