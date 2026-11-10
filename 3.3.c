@@ -9,15 +9,16 @@
  * @param x - аргумент функции
  * @return Значение функции 0.5 * ln(x)
  */
-double GetFunction(double x);
+double GetFunction(const double x);
 
 /**
  * @brief Вычисляет сумму ряда с заданной точностью
  *
  * @param x - аргумент ряда
+ * @param eps - заданная точность вычисления
  * @return Приближенное значение суммы ряда
  */
-double GetSum(double x, const double eps);
+double GetSum(const double x, const double eps);
 
 /**
  * @brief Вычисляет коэффициент для следующего члена ряда
@@ -28,13 +29,23 @@ double GetSum(double x, const double eps);
 double GetCoef(const int i);
 
 /**
- * @brief считывает и проверяет введенное исло 
- * 
- * @return считанное число
+ * @brief Считывает вещественное число и проверяет корректность ввода
+ *
+ * @return Считанное вещественное число
  */
 double GetValue();
 
 /**
+ * @brief Проверяет корректность интервала и заданной точности
+ *
+ * @param start - начало интервала
+ * @param end - конец интервала
+ * @param step - шаг интервала
+ * @param eps - заданная точность вычисления
+ */
+void CheckValues(const double start, const double end, const double step, const double eps);
+
+ /**
  * @brief Точка входа в программу
  *
  * @return 0, если программа выполнена корректно
@@ -42,21 +53,24 @@ double GetValue();
 int main()
 {
     printf("Введите начало интервала: ");
-    double start = GetValue();
+    const double start = GetValue();
 
     printf("Введите конец интервала: ");
-    double end = GetValue();
+    const double end = GetValue();
 
     printf("Введите шаг интервала: ");
-    double step = GetValue();
+    const double step = GetValue();
 
     printf("Введите точность: ");
-    double eps = GetValue();
+    const double eps = GetValue();
+
+    CheckValues(start, end, step, eps);
+
 
     printf("x\t\tf(x)\t\tS(x)\n");
 
     for(int i = 0; start + i * step <= end; i++){
-        double x = start + i * step;
+        const double x = start + i * step;
 
         printf("%.2f\t\t%.4f\t\t%.4f\n",
                x, GetFunction(x), GetSum(x, eps));
@@ -77,16 +91,7 @@ double GetValue()
     return value;
 }
 
-int GetInt(){
-    int value = 0;
-    if(scanf("%d", &value) != 1){
-        printf("неверный ввод");
-        exit(1);
-    }
-    return value;
-}
-
-double GetFunction(double x){
+double GetFunction(const double x){
     return 0.5 * log(x);
 }
 
@@ -106,4 +111,12 @@ double GetSum(double x, const double eps){
 
 double GetCoef(const int i){
     return (2.0*i + 1.0)/(2.0*i + 3.0);
+}
+
+void CheckValues(const double start, const double end, const double step, const double eps)
+{
+    if (start <= 0 || end < start || step <= 0 || eps <= 0) {
+        printf("Ошибка: неверные параметры\n");
+        exit(1);
+    }
 }
