@@ -82,7 +82,7 @@ int GetValue()
 double GetDouble()
 {
     double value = 0;
-    if(scanf("%lf", &value) != 1 || value <= 0 || !isfinite(value)){
+    if(scanf("%lf", &value) != 1 || value <= 0){
         printf("ошибка: неверный ввод");
         exit(1);
     }
