@@ -69,7 +69,7 @@ int main()
 	
 	double third_side = GetThirdSideOfTriangle(a, b, c);
 
-	printf("Area of the triangle: %.2lf\n", GetAreaOfTriangle(a, b, c));
+	printf("Area of the triangle: %.2lf\n", third_side);
 	printf("Value of the third side of the triangle: %.2lf\n", third_side);
 	printf("Radius of the circumscribed figure: %.2lf\n", GetRadiusOfCircumscribedFigure(third_side, c));
 	return 0;
